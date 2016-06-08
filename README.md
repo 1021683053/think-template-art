@@ -12,8 +12,8 @@
 
 添加文件`src/common/bootstrap/adapter.js`.
 ```javascript
-import TwigAdapter from 'think-template-twig';
-think.adapter('template', 'twig', TwigAdapter);
+import artTemplate from 'think-template-art';
+think.adapter('template', 'art', artTemplate);
 ```
 
 #### 配置
