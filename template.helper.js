@@ -30,8 +30,6 @@
             "q": Math.floor((date.getMonth() + 3) / 3), //季度
             "S": date.getMilliseconds() //毫秒
         };
-
-        console.log(map);
         format = format.replace(/([yMdhmsqS])+/g, function(all, t){
             var v = map[t];
             if(v !== undefined){
