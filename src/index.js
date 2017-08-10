@@ -13,26 +13,36 @@ export default class extends Base {
 	 * @return {Promise}            []
 	 */
 	async run(templateFile, tVar, config){
-		
-		let suffix = config.file_ext || ".html";
+
+		let adapter = config.art || {};
+
+		let suffix = config.file_ext || ".art";
 		let temp_path = templateFile.split(suffix)[0];
 		let helper_path = config.helper_path || undefined;
-		let helper;
 
-		// 判断是否有helper函数并执行
-		if( !helper_path || !( await fileExists(helper_path) ) ){
-			helper_path = '../template.helper.js';
-		}
+        // 判断是否有helper函数并执行
+        if( !helper_path || !( await fileExists(helper_path) ) ){
+            helper_path = '../template.helper.js';
+        };
 
-		helper = require(helper_path);
-		helper(template);
+		let defaults = template.defaults;
 
-		// 配置arttemplate
-		template.config("extname", config.file_ext);
-        template.config("cache", false);
+        //引入Helper
+		let helpers = require(helper_path);
+		Object.keys(helpers).forEach((key)=>{
+			defaults.imports[key] = helpers[key];
+		});
 
-		// 渲染arttemplate
-        return template(temp_path, tVar);
+        let options = defaults.$extend({
+            debug: process.env.NODE_ENV !== 'production'
+        });
+
+		options.filename = temp_path;
+		options.extname = suffix;
+
+		Object.assign(options, adapter);
+
+        return template.compile(options)(tVar);
 	}
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "think-template-art",
   "description": "art-template template adapter for ThinkJS",
-  "version": "1.0.3",
+  "version": "2.0.0-rec.1",
   "author": "Liweifeng",
   "scripts": {
     "test": "mocha --reporter spec --timeout 5000 --recursive test/",
@@ -14,7 +14,7 @@
   "contributors": [],
   "main": "lib/index.js",
   "dependencies": {
-    "art-template": "^3.0.3",
+    "art-template": "^4.12.1",
     "babel-runtime": "6.x.x"
   },
   "devDependencies": {
