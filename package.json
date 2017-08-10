@@ -1,7 +1,7 @@
 {
   "name": "think-template-art",
   "description": "art-template template adapter for ThinkJS",
-  "version": "2.0.0-rec.1",
+  "version": "2.0.0",
   "author": "Liweifeng",
   "scripts": {
     "test": "mocha --reporter spec --timeout 5000 --recursive test/",
